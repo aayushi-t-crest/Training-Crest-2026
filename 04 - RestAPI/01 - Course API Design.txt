@@ -1,0 +1,249 @@
+STEP 1: Create a New API
+	Title: OpenAPI Specification for CMS
+	Description: API Specification document of the CMS System
+	Contact: Aayushi Trivedi
+	Version: 1.0
+
+STEP 2: Identify the Type of API
+	public
+
+STEP 3: Identify the Server Base URL
+	http://{hostname}:{port}/{directory}
+	http://localhost:44333
+
+STEP 4: Identify the Resources
+	Courses
+	Student
+ 
+STEP 5: Have the Resources as Plural
+	courses (/api/courses)
+	students (/api/students)
+	 
+STEP 6: Define the Resource Model
+	courses Model
+		course Id
+		course Name
+		course Duration
+		course Type
+	students Model
+		students Id
+		First Name
+		Last Name
+		Phone Number
+		Address
+		
+STEP 7: Select each Identifier for each Resource 
+	courses Model
+		course Id (IDENTIFIER)
+		course Name
+		course Duration
+		course Type
+	students Model
+		students Id (IDENTIFIER)
+		First Name
+		Last Name
+		Phone Number
+		Address	
+ 
+STEP 8: Identify the Association for each Resource 
+	courses 
+		/api/courses/{courseId}/Students
+		/api/courses/{courseId}/course-subjects
+	students
+		None
+		
+STEP 9: Check for URL Complexity
+	courses 
+		/api/courses
+		/api/courses/{courseId}
+		/api/courses/{courseId}/Students
+	students
+		/api/Students		
+		/api/Students/{studentId}
+		
+STEP 10: Identify the Operations for the each resources
+	courses 
+		/api/courses
+		PUT
+		DELETE
+		
+		/api/courses/{courseId}/Students
+		GET
+		POST
+		
+	students
+		/api/Students	
+		GET
+		POST
+		
+		/api/Students/{studentId}
+		GET
+		PUT
+		DELETE
+		
+STEP 11: Identify the Parameters Required for the Operations
+	Query Parameters
+		None
+		
+	Path Parameters
+		None - Collections
+		courseId - Unique course id of the course model (applicable for individual item)
+	
+	Headers
+		None
+		
+	Cookies
+		None
+		
+STEP 12: Identify the Content type of the Request for the Operation
+	application/json
+
+STEP 13: Identify request body for the operation
+	/api/courses
+		GET
+		   None
+
+		POST
+		   courseName
+		   courseType
+		   courseDuration
+
+
+	/api/courses/{courseId}
+		GET
+		   None
+
+		PUT
+	   	   courseName
+		   courseType
+		   courseDuration
+
+		DELETE
+		   None
+
+	/api/courses/{courseId}/Student
+		GET
+		   None
+		POST
+		   firstName
+		   lastName
+		   phoneNumber
+		   address	
+
+
+STEP 14: Define Response Status Codes
+	200 OK → Successful GET/PUT request
+	201 Created → Resource successfully created (POST)
+	204 No Content → Resource successfully deleted (DELETE)
+	400 Bad Request → Invalid input or missing data
+	401 Unauthorized → Authentication required
+	404 Not Found → Resource not available
+	500 Internal Server Error → Unexpected server error
+
+	Identify HTTP Status codes for operations
+	/api/courses
+		GET
+		   HTTP 200 OK
+		POST
+		   HTTP 200 OK
+		   HTTP 404 NOT FOUND
+
+	/api/courses/{courseId}
+		GET
+		   HTTP 200 OK
+		   HTTP 404 NOT FOUND
+		PUT
+	   	   HTTP 200 OK
+		   HTTP 404 NOT FOUND
+		DELETE
+		   HTTP 204 NO CONTENT
+		   HTTP 404 NOT FOUND
+
+	/api/courses/{courseId}/Student
+		GET
+		   HTTP 200 OK
+		POST
+		   HTTP 200 OK
+		   HTTP 404 NOT FOUND
+
+STEP 15: Identify the content type of response for the operation
+	application/json
+
+STEP 16: Identify response body for the operation
+	 /api/courses
+		GET
+		   (array)
+		   courseId
+		   courseName
+		   courseType
+		   courseDuration
+
+		POST
+		   courseId
+		   courseName
+		   courseType
+		   courseDuration
+
+
+	/api/courses/{courseId}
+		GET
+		   courseId
+		   courseName
+		   courseType
+		   courseDuration
+
+		PUT
+		   courseId
+	   	   courseName
+		   courseType
+		   courseDuration
+
+		DELETE
+		   None
+
+	/api/courses/{courseId}/Student
+		GET
+		   (array)
+		   studentId
+		   firstName
+		   lastName
+		   phoneNumber
+		   address
+		POST
+		   studentId
+		   firstName
+		   lastName
+		   phoneNumber
+		   address
+	
+STEP 17: Handle errors for the operation
+	400 BAD REQUEST:
+	{
+	"error": {
+	"code": "INVALID_INPUT",
+	"message": "One or more input arguments are invalid",
+	"target": "Course",
+	"details": [
+	{ "code": "MISSING_FIELD", "target": "courseName", "message": "Course name is required" }
+		]
+	   }
+	}
+
+
+STEP 18: Authentication & Security
+	Type: Token-based authentication (e.g., Bearer Token / JWT)
+	HTTPS required for secure communication
+	Public API, but endpoints may require auth for POST, PUT, DELETE  operations
+
+
+STEP 19–20: Filtering, Pagination, Sorting
+	Filtering: GET /api/courses?courseType=Full-time
+	Pagination: GET /api/courses?page=1&size;=20
+	Sorting: GET /api/courses?sortBy=courseName	
+
+STEP 21: API Versioning
+	Scheme: URL Versioning
+	Version: 1.0
+	/api/v1/courses
+	/api/v1/courses/{courseId}
+	/api/v1/courses/{courseId}/students
