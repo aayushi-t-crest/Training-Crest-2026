@@ -1,0 +1,53 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+env/
+*.venv/
+*fastapienv/
+
+# Environment and secrets
+.env
+*.env
+uv.lock
+
+# IDE / Editor settings
+.idea/
+.vscode/
+
+# Databases
+*.db
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build and packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Logs and temp files
+*.log
+logs/
+tmp/
+temp/
+
+# Jupyter notebooks checkpoints
+.ipynb_checkpoints/
+
+# Project specific folders (do not push)
+setup/
+assets/
+guides/
+
+# Pyproject tools
+.pytest_cache/
+.coverage
+htmlcov/
