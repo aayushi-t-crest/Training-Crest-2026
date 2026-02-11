@@ -1,0 +1,252 @@
+1. Repository Basics & Setup
+
+git init – Creates a new Git repository by initializing a .git folder.
+
+git status – Shows the current state of the working directory and staging area.
+
+git clone <url> – Copies an existing repository (GitHub or elsewhere) to your local machine.
+
+git config – Sets or gets Git configuration values.
+
+git config --global user.name "Name" – Sets global username.
+
+git config --global user.email "email" – Sets global email.
+
+git config --list – Displays all active Git configuration settings.
+
+2. Staging & Committing
+
+git add <file> – Stages a specific file.
+
+git add . – Stages all modified and new files.
+
+git commit -m "message" – Creates a commit with a message.
+
+git commit – Opens editor to write a detailed commit message.
+
+git commit --amend – Modifies the most recent commit.
+
+git log – Shows commit history.
+
+git log --oneline – Displays concise commit history.
+
+git log --graph --all – Shows branch structure visually.
+
+3. Ignoring Files
+
+.gitignore – File used to specify intentionally untracked files.
+
+git check-ignore -v <file> – Explains why a file is ignored.
+
+4. Branching & HEAD
+
+git branch – Lists local branches.
+
+git branch <name> – Creates a new branch.
+
+git branch -d <name> – Deletes a branch.
+
+git branch -m <new-name> – Renames the current branch.
+
+git checkout <branch> – Switches branches (older way).
+
+git checkout -b <branch> – Creates and switches to a branch.
+
+git switch <branch> – Switches branches (modern way).
+
+git switch -c <branch> – Creates and switches to a branch.
+
+git symbolic-ref HEAD – Shows where HEAD is pointing.
+
+5. Merging
+
+git merge <branch> – Merges specified branch into current branch.
+
+git merge --no-ff <branch> – Forces a merge commit.
+
+git merge --abort – Cancels a failed merge.
+
+git mergetool – Opens merge conflict resolution tool.
+
+6. Comparing Changes (Diff)
+
+git diff – Shows unstaged changes.
+
+git diff --staged – Shows staged changes.
+
+git diff <file> – Diffs a specific file.
+
+git diff <branch1>..<branch2> – Compares two branches.
+
+git diff <commit1> <commit2> – Compares two commits.
+
+7. Stashing
+
+git stash – Temporarily saves uncommitted changes.
+
+git stash save "message" – Stashes with a description.
+
+git stash list – Lists all stashes.
+
+git stash pop – Applies and removes latest stash.
+
+git stash apply – Applies stash without deleting it.
+
+git stash drop <stash> – Deletes a specific stash.
+
+git stash clear – Removes all stashes.
+
+8. Undoing Changes & Time Travel
+Working Directory & Staging
+
+git restore <file> – Discards changes in working directory.
+
+git restore --staged <file> – Unstages a file.
+
+git checkout -- <file> – Old way to discard file changes.
+
+Commits
+
+git reset --soft HEAD~1 – Undo commit, keep changes staged.
+
+git reset --mixed HEAD~1 – Undo commit, keep changes unstaged.
+
+git reset --hard HEAD~1 – Completely removes commit and changes.
+
+git revert <commit> – Creates a new commit that undoes a commit.
+
+Detached HEAD
+
+git checkout <commit> – Checks out an old commit.
+
+git switch - – Switches back to previous branch.
+
+9. Remote Repositories & GitHub
+
+git remote – Lists remotes.
+
+git remote -v – Shows remote URLs.
+
+git remote add origin <url> – Adds a remote repository.
+
+git push – Pushes commits to remote.
+
+git push -u origin <branch> – Sets upstream branch.
+
+git pull – Fetches and merges from remote.
+
+git fetch – Downloads remote changes without merging.
+
+git branch -r – Lists remote branches.
+
+git branch -a – Lists all branches (local + remote).
+
+10. Fetching & Pulling Details
+
+git fetch origin – Fetches updates from origin.
+
+git fetch --all – Fetches from all remotes.
+
+git pull --rebase – Pulls and rebases instead of merging.
+
+11. Collaboration & Pull Requests
+
+(Mostly GitHub UI, but Git-side commands still matter)
+
+git fork – (GitHub action) Creates a fork of a repository.
+
+git clone <fork-url> – Clones a fork.
+
+git remote add upstream <url> – Adds original repo as upstream.
+
+git fetch upstream – Fetches updates from original repo.
+
+git merge upstream/main – Merges upstream changes.
+
+12. Rebasing
+
+git rebase <branch> – Reapplies commits onto another base.
+
+git rebase --continue – Continues rebase after conflict resolution.
+
+git rebase --abort – Cancels rebase.
+
+git rebase --skip – Skips current commit during rebase.
+
+13. Interactive Rebase
+
+git rebase -i HEAD~n – Starts interactive rebase.
+
+pick – Keeps commit as-is.
+
+reword – Edits commit message.
+
+edit – Modifies commit content.
+
+squash – Combines commits.
+
+fixup – Squashes without keeping message.
+
+drop – Removes commit.
+
+14. Tags & Versioning
+
+git tag – Lists tags.
+
+git tag v1.0.0 – Creates lightweight tag.
+
+git tag -a v1.0.0 -m "message" – Creates annotated tag.
+
+git show v1.0.0 – Shows tag details.
+
+git tag -d v1.0.0 – Deletes a tag locally.
+
+git push origin v1.0.0 – Pushes a tag.
+
+git push origin --tags – Pushes all tags.
+
+git push --force origin v1.0.0 – Replaces a tag on remote.
+
+15. Git Internals & Plumbing
+
+git hash-object <file> – Creates a blob hash.
+
+git cat-file -p <hash> – Displays Git object content.
+
+git cat-file -t <hash> – Shows object type.
+
+git rev-parse HEAD – Resolves references.
+
+git show-ref – Lists refs.
+
+git ls-tree <commit> – Shows tree objects.
+
+16. Reflog (Recover Lost Work)
+
+git reflog – Shows history of HEAD movements.
+
+git reflog show – Displays reflog entries.
+
+git checkout HEAD@{n} – Restores a previous state.
+
+git reset --hard HEAD@{n} – Recovers lost commits.
+
+17. Git Aliases
+
+git config --global alias.st status – Creates an alias.
+
+git config --global alias.co checkout – Alias example.
+
+git config --global alias.lg "log --oneline --graph --all" – Advanced alias.
+
+git config --get-regexp alias – Lists all aliases.
+
+18. Documentation & Help
+
+git help – General help.
+
+git help <command> – Command-specific help.
+
+git <command> --help – Alternative help syntax.
+
+man git – Opens Git manual.
