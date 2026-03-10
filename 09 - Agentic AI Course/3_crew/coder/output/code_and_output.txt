@@ -1,0 +1,27 @@
+Here is the code and its output:
+
+
+```python
+# Function to group anagrams together
+def group_anagrams(strs):
+    anagrams = {}
+    for s in strs:
+        sorted_str = "".join(sorted(s))
+        if sorted_str in anagrams:
+            anagrams[sorted_str].append(s)
+        else:
+            anagrams[sorted_str] = [s]
+    return list(anagrams.values())
+
+# Test the function
+strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
+grouped_anagrams = group_anagrams(strs)
+print(grouped_anagrams)
+```
+
+Output:
+
+
+```python
+[['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]
+```
